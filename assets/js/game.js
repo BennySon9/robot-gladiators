@@ -11,14 +11,27 @@ var playerAttack = 10;
 var playerMoney = 10;
 
 // Logging multiple values at once
-console.log(playerName, playerAttack, playerHealth);
+// (removed for now) console.log(playerName, playerAttack, playerHealth);
 
-var enemyName = "Roborto";
+// create array for enemy robots
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
+//console.log(enemyNames);
+//console.log(enemyNames[0]);
+//console.log(enemyNames[1]);
+//console.log(enemyNames[2]);
+//console.log(enemyNames.length);
+
+//for (var i = 0; i < enemyNames.length; i++) {
+//console.log(enemyNames[i]);
+//console.log(i);
+//console.log(enemyNames[i] + " is at " + i + " index");
+//}
+
 var enemyHealth = 50;
 var enemyAttack = 12;
 
 // fight function
-var fight = function () {
+var fight = function (enemyName) {
   // Alert players that they are starting the round
   window.alert("Welcome to Robot Gladiators!");
 
@@ -88,5 +101,9 @@ var fight = function () {
   }
 };
 
+for (var i = 0; i < enemyNames.length; i++) {
+  fight(enemyNames[i]);
+}
+
 // run fight function to start game
-fight();
+//fight();
