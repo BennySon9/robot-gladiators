@@ -15,6 +15,12 @@ var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
+// function to generate a random numeric value
+var randomNumber = function (min, max) {
+  var value = Math.floor(Math.random() * (max - min + 1) + min);
+  return value;
+};
+
 // fight function w enemy names
 var fight = function (enemyName) {
   // repeat and execute as long as the enemy-robot is alive
@@ -32,13 +38,15 @@ var fight = function (enemyName) {
       if (confirmSkip) {
         window.alert(playerName + " has decided to skip this fight. Goodbye!");
         // subtract money from playerMoney for skipping
-        playerMoney = playerMoney - 10;
+        playerMoney = Math.max(0, playerMoney - 10);
         console.log("playerMoney", playerMoney);
         break;
       }
     }
+    // generate random damage value based onn players attack power
+    var damage = randomNumber((playerAttack = 3), playerAttack);
     // remove enemys health by subtracting from players attack var
-    enemyHealth = enemyHealth - playerAttack;
+    enemyHealth = Math.max(0, enemyHealth - damage);
     console.log(
       playerName +
         " attacked " +
@@ -60,9 +68,10 @@ var fight = function (enemyName) {
     } else {
       window.alert(enemyName + " still has " + enemyHealth + " health left.");
     }
-
+    // generate random damage value based on enemies attack power
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
     // remove players health by subtracting the amount set in the enemyAttack
-    playerHealth = playerHealth - enemyAttack;
+    playerHealth = Math.max(0, playerHealth - damage);
     console.log(
       enemyName +
         " attacked " +
@@ -101,7 +110,7 @@ var startGame = function () {
       // pick new enemy to fight based on index of enemyNames array
       var pickedEnemyName = enemyNames[i];
       // reset enemy health before new fight
-      enemyHealth = 50;
+      enemyHealth = randomNumber;
       // pass pickedEnemyName var value into fight function, where it will assume vale of enemyName parameter
       fight(pickedEnemyName);
       // if were not at the last enemy of the array
